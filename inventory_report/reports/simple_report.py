@@ -3,6 +3,11 @@ from collections import Counter
 
 
 class SimpleReport:
+    @classmethod
+    def generate_filter_company(cls, file):
+        result = [company["nome_da_empresa"] for company in file]
+        return Counter(result)
+
     @staticmethod
     # https://www.programiz.com/python-programming/methods/built-in/staticmethod
     def generate(products):

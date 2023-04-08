@@ -20,3 +20,6 @@ def test_cria_produto():
     assert (
         create_product.instrucoes_de_armazenamento == "Ao abrigo de luz solar"
     )
+
+
+# informações retirada do readme.

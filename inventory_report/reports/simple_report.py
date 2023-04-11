@@ -8,9 +8,8 @@ class SimpleReport:
         result = [company["nome_da_empresa"] for company in products_list]
         return Counter(result)
 
-    @staticmethod
-    # https://www.programiz.com/python-programming/methods/built-in/staticmethod
-    def generate(products):
+    @classmethod
+    def generate(cls, products):
         min_date = min(product["data_de_fabricacao"] for product in products)
         max_date = min(
             (

@@ -29,8 +29,8 @@ class Inventory:
                 read_products = []
                 for product in aquivo_csv:
                     read_products.append(product)
-                    read_products = list(read_products)
-                    return read_products
+                read_products = list(read_products)
+                return read_products
         elif path.endswith("json"):
             with open(path) as file:
                 content = file.read()

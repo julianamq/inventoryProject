@@ -9,19 +9,19 @@ class SimpleReport:
         return Counter(result)
 
     @classmethod
-    def generate(cls, products):
-        min_date = min(product["data_de_fabricacao"] for product in products)
+    def generate(cls, list):
+        min_date = min(product["data_de_fabricacao"] for product in list)
         max_date = min(
             (
                 product["data_de_validade"]
-                for product in products
+                for product in list
                 if product["data_de_validade"]
                 > datetime.now().strftime("%Y-%m-%d")
             ),
             default=None,
         )
         most_common_company = Counter(
-            product["nome_da_empresa"] for product in products
+            product["nome_da_empresa"] for product in list
         ).most_common(1)[0][0]
         return (
             f"Data de fabricação mais antiga: {min_date}\n"

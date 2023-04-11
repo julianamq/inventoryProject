@@ -11,5 +11,4 @@ class CompleteReport(SimpleReport):
         result += "\nProdutos estocados por empresa:\n"
         for company, quantity in products_by_company.items():
             result += f"- {company}: {quantity}\n"
-
             return result

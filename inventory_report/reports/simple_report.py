@@ -4,8 +4,8 @@ from collections import Counter
 
 class SimpleReport:
     @classmethod
-    def generate_filter_company(cls, file):
-        result = [company["nome_da_empresa"] for company in file]
+    def generate_filter_company(cls, products_list):
+        result = [company["nome_da_empresa"] for company in products_list]
         return Counter(result)
 
     @staticmethod

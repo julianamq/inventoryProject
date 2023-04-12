@@ -5,7 +5,7 @@ from .importer import Importer
 class XmlImporter(Importer):
     @classmethod
     def import_data(cls, path):
-        if ".xml" not in path: # se houver erro será levantado
+        if ".xml" not in path:  # se houver erro será levantado
             raise ValueError("Arquivo inválido")
         types = []
         with open(path) as file:

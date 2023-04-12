@@ -1,33 +1,20 @@
-from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.simple_report import SimpleReport
-import csv
-import json
+from inventory_report.reports.complete_report import CompleteReport
+from inventory_report.importer.csv_importer import CsvImporter
+from inventory_report.importer.json_importer import JsonImporter
+from inventory_report.importer.xml_importer import XmlImporter
 
 
 class Inventory:
     @classmethod
-    def import_data(cls, path: str, relatory: str):
-        list_products = []
-        if path.endswith("csv"):
-            list_products = Inventory.read_archives(path)                           
-        elif path.endswith("json"):
-            list_products = Inventory.read_json(path)
-
-        if relatory == "simples":
-            return SimpleReport.generate(list_products)
-        elif relatory == "completo":
-            return CompleteReport.generate(list_products)
-        raise ValueError("Erro ao ler o arquivo de relatório")
-
-    def read_archives(path):
-        with open(path, "r") as file:
-            arq_csv = csv.DictReader(file, delimiter=",", quotechar='"')
-            read_products = []
-            for product in arq_csv:
-                read_products.append(product)
-            return read_products
-
-    def read_json(path):
-        with open(path) as file:
-            read = json.load(file)
-        return read
+    def import_data(cls, path, type):
+        if path.endswith(".csv"):
+            result = CsvImporter.import_data(path)
+        if path.endswith(".json"):
+            result = JsonImporter.import_data(path)
+        if path.endswith(".xml"):
+            result = XmlImporter.import_data(path)
+        if type == "completo":
+            return CompleteReport.generate(result)
+        else:
+            return SimpleReport.generate(result)
